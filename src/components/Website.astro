@@ -1,0 +1,72 @@
+---
+import '../styles/global.css';
+interface Props { en?: boolean }
+const { en = false } = Astro.props;
+const t = (zh: string, english: string) => en ? english : zh;
+const services = [
+  ['01', '企业咨询与转型', 'Business & transformation', '从业务目标出发，梳理流程、数据与系统现状，识别值得投入的 AI 场景，制定分阶段的信息化与智能化路线。', 'Connect business goals with processes, data and systems. Identify valuable AI opportunities and build a practical transformation roadmap.', '业务诊断 / 路线规划 / 技术选型', 'Discovery / Roadmaps / Technology strategy'],
+  ['02', 'AI 架构与工程', 'AI architecture & engineering', '结合机器学习、大模型与可解释性，设计可集成、可评估的解决方案。以 AI 辅助研发加速原型验证与行业软件交付。', 'Combine machine learning, large language models and explainability in solutions that can be integrated and evaluated. Accelerate prototypes and software delivery with AI-assisted engineering.', '架构设计 / 概念验证 / 软件交付', 'Architecture / Proof of concept / Delivery'],
+  ['03', '商务对接与协同', 'Partnerships & collaboration', '连接行业需求、技术能力与合作伙伴，明确合作边界与交付目标，推动从初步沟通到项目协同。', 'Connect industry needs, technical capabilities and partners. Define scope and delivery goals, and turn early conversations into coordinated projects.', '需求对接 / 方案共创 / 项目协同', 'Opportunity matching / Co-design / Coordination'],
+];
+const cases = [
+  ['01 / INDUSTRIAL INTELLIGENCE', '让设备状态，变成决策依据。', 'Turn equipment signals into decisions.', '装备故障诊断与预测', 'Equipment diagnostics & prediction', '融合物理经验、规则、机器学习与运行数据，识别设备异常、分析故障原因，为维护计划提供依据，帮助减少非计划停机。', 'Bring together physical expertise, rules, machine learning and operational data to detect anomalies, investigate failures and inform maintenance planning, helping reduce unplanned downtime.', ['物理经验 + 数据', '诊断与预测', 'AI 可解释性'], ['Physics + data', 'Diagnosis & prediction', 'Explainable AI']],
+  ['02 / ENERGY OPTIMIZATION', '让用电规律，创造调度空间。', 'Find flexibility in energy patterns.', '储能与用电策略', 'Energy storage & electricity strategy', '结合电价规则、企业用电模式与储能约束，制定合理的充放电策略，支持能源管理与运营决策。', 'Use electricity tariff rules, enterprise consumption patterns and storage constraints to develop charging and discharging strategies for energy management and operational decisions.', ['电价规则', '负荷模式', '储能调度'], ['Tariff rules', 'Load patterns', 'Storage scheduling']],
+];
+const title = t('坤晟科技 KunShine | 企业咨询 · AI 架构 · 行业数字化', 'KunShine | Business Consulting, AI Architecture & Digital Transformation');
+const description = t('大连坤晟科技有限公司，成立于2023年。以20余年软件架构经验，连接业务与AI，服务能源、工业、制造与教育领域的数字化转型。', 'Founded in 2023, KunShine connects business and AI with 20+ years of software architecture experience across energy, industry, manufacturing and education.');
+---
+<!doctype html>
+<html lang={en ? 'en' : 'zh-CN'}>
+  <head>
+    <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title><meta name="description" content={description} />
+    <meta name="theme-color" content="#091b29" /><link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="canonical" href={`https://kunshine.tech${en ? '/en/' : '/'}`} />
+    <link rel="alternate" hreflang="zh-CN" href="https://kunshine.tech/" /><link rel="alternate" hreflang="en" href="https://kunshine.tech/en/" /><link rel="alternate" hreflang="x-default" href="https://kunshine.tech/" />
+    <meta property="og:title" content={title} /><meta property="og:description" content={description} /><meta property="og:type" content="website" /><meta property="og:url" content={`https://kunshine.tech${en ? '/en/' : '/'}`} /><meta property="og:locale" content={en ? 'en_US' : 'zh_CN'} />
+  </head>
+  <body>
+    <a href="#main" class="skip-link">{t('跳至主要内容', 'Skip to content')}</a>
+    <header class="header">
+      <a class="brand" href={en ? '/en/' : '/'} aria-label="KunShine home"><span class="brand-icon">K<span>✳</span></span><span>KunShine<span class="brand-tech">TECHNOLOGY</span></span></a>
+      <nav aria-label={t('主导航', 'Main navigation')}>
+        <a href="#expertise">{t('专业服务', 'Expertise')}</a><a href="#experience">{t('行业实践', 'Experience')}</a><a href="#about">{t('关于坤晟', 'About')}</a>
+      </nav>
+      <div class="header-right"><a class="language" href={en ? '/' : '/en/'} lang={en ? 'zh-CN' : 'en'}>{en ? '中文' : 'EN'} <span>↗</span></a><a class="header-contact" href="#contact">{t('建立连接', 'Let’s connect')} <span>↗</span></a></div>
+    </header>
+    <main id="main">
+      <section class="hero wrap">
+        <div class="hero-copy"><p class="eyebrow"><span class="status-dot"></span> INTELLIGENCE, GROUNDED IN EXPERIENCE.</p>
+          <h1>{t('以架构连接业务', 'Architecture for business.')}<br /><span>{t('以 AI 拓展可能', 'AI for what’s next.')}</span><span class="period">.</span></h1>
+          <p class="hero-description">{t('从行业深处，到智能未来。', 'From industry insight to intelligent futures.')}<br />{t('以 20 余年软件架构经验，让复杂问题走向清晰、可落地的解决方案。', '20+ years of software architecture experience. Clear, practical solutions to complex business challenges.')}</p>
+          <div class="hero-actions"><a class="button primary" href="#expertise">{t('探索我们的能力', 'Explore our expertise')} <span>↗</span></a><a class="text-link" href="#experience">{t('了解行业实践', 'See our experience')} <span>↓</span></a></div>
+          <div class="hero-footnote"><span>DALIAN, CHINA</span><span class="tiny-line"></span><span>GLOBAL PERSPECTIVE</span></div>
+        </div>
+        <div class="architecture" role="img" aria-label={t('连接业务、数据与人工智能的架构示意图', 'Architecture illustration connecting business, data and AI')}>
+          <div class="visual-label">KUNSHINE / INTELLIGENCE SYSTEM</div><div class="orbital orbital-one"></div><div class="orbital orbital-two"></div><div class="orbital orbital-three"></div>
+          <div class="axis axis-a"></div><div class="axis axis-b"></div><div class="core"><div class="core-inner">K<span>✳</span></div></div>
+          <div class="node node-business"><i></i> BUSINESS<span>01 / UNDERSTAND</span></div><div class="node node-data"><i></i> DATA<span>02 / CONNECT</span></div><div class="node node-ai"><i></i> AI<span>03 / TRANSFORM</span></div>
+          <div class="visual-bottom"><span class="status-dot"></span> HUMAN INSIGHT. MACHINE INTELLIGENCE.</div>
+        </div>
+      </section>
+      <div class="facts wrap"><div><strong>20<span>+</span></strong><p>{t('管理者软件架构经验', 'Years of founder’s architecture experience')}</p></div><div><strong>2023</strong><p>{t('坤晟科技成立', 'KunShine established')}</p></div><div><strong>{t('跨行业', 'Cross-sector')}</strong><p>{t('能源 · 工业 · 制造 · 教育', 'Energy · Industry · Manufacturing · Education')}</p></div><div><strong>{t('全球视野', 'Global outlook')}</strong><p>{t('立足大连，连接更多可能', 'Based in Dalian. Open to new possibilities.')}</p></div></div>
+      <section id="expertise" class="section wrap">
+        <div class="section-heading"><div><p class="eyebrow">01 / OUR EXPERTISE</p><h2>{t('从正确的问题开始。', 'Start with the right questions.')}</h2></div><p>{t('技术是路径，业务价值是方向。\n连接战略判断、架构设计与工程实践。', 'Technology is the path. Business value sets the direction.\nConnecting strategy, architecture and engineering.')}</p></div>
+        <div class="services">{services.map(s => <article class="service"><div class="service-top"><span>{s[0]}</span><span>↗</span></div><h3>{s[en ? 2 : 1]}</h3><p>{s[en ? 4 : 3]}</p><div class="service-tags">{s[en ? 6 : 5]}</div></article>)}</div>
+      </section>
+      <section id="experience" class="section experience"><div class="wrap">
+        <div class="section-heading"><div><p class="eyebrow">02 / INDUSTRY EXPERIENCE</p><h2>{t('扎根真实场景，解决复杂问题。', 'Real contexts. Complex challenges.')}</h2></div><p>{t('以下为管理者过往项目经验方向，\n用于说明方法与应用场景。', 'Selected areas of the founder’s previous project experience,\nillustrating methods and applications.')}</p></div>
+        {cases.map((c, i) => <article class="case"><div class={`case-visual case-visual-${i}`} aria-hidden="true"><div class="chart-label">{i === 0 ? 'EQUIPMENT SIGNAL / ANALYSIS' : 'ENERGY / DISPATCH LOGIC'}</div>{i === 0 ? <svg viewBox="0 0 500 180"><path class="chart-grid" d="M0 40H500 M0 90H500 M0 140H500 M100 0V180 M200 0V180 M300 0V180 M400 0V180"/><path class="signal muted" d="M0 98L25 88 50 102 75 76 100 94 125 89 150 99 175 74 200 105 225 81 250 94 275 40 300 125 325 59 350 95 375 74 400 91 425 80 450 98 475 86 500 90"/><path class="signal" d="M0 105C70 105 65 85 120 90S190 112 240 90 270 60 300 82 330 100 365 87 420 92 500 84"/><circle cx="278" cy="78" r="7" class="chart-dot"/></svg> : <div class="energy-bars">{[32, 42, 38, 30, 48, 66, 83, 95, 88, 72, 62, 78, 89, 97, 76, 55, 38, 30].map((h, j) => <span style={`--height:${h}%;--bar-color:${j > 5 && j < 14 ? '#b7ef75' : '#285c63'}`}></span>)}</div>}<div class="chart-caption"><span>{i === 0 ? 'PHYSICS × DATA × AI' : 'TARIFF × LOAD × STORAGE'}</span><span>{t('方法示意', 'CONCEPT ILLUSTRATION')}</span></div></div><div class="case-copy"><p class="eyebrow">{c[0]}</p><h3>{c[en ? 2 : 1]}</h3><h4>{c[en ? 4 : 3]}</h4><p>{c[en ? 6 : 5]}</p><div class="tags">{(c[en ? 8 : 7] as string[]).map(tag => <span>{tag}</span>)}</div></div></article>)}
+        <div class="knowledge"><span class="knowledge-symbol">✳</span><div><h3>{t('让行业知识，进入智能工作流。', 'Bring domain knowledge into intelligent workflows.')}</h3><p>{t('面向企业与教育场景，探索大模型与知识应用的结合，关注数据边界、结果评估与人的判断。', 'Explore language models and knowledge applications for enterprise and education, with attention to data boundaries, evaluation and human judgment.')}</p></div><span class="knowledge-arrow">↗</span></div>
+      </div></section>
+      <section class="section wrap process"><div><p class="eyebrow">03 / HOW WE WORK</p><h2>{t('把方向变成路径。', 'Make the direction actionable.')}</h2><p class="section-intro">{t('先理解，再构建；用验证推动下一步。', 'Understand first. Build with purpose. Let evidence guide the next step.')}</p></div><div class="steps">{[
+        [t('理解业务', 'Understand'), t('明确目标、约束与成功标准，让技术选择有据可依。', 'Define goals, constraints and success criteria to ground technology choices.')],
+        [t('设计路径', 'Design'), t('评估数据与系统基础，共创架构、合作方式与实施路线。', 'Assess data and systems, then shape architecture, partnerships and the implementation roadmap.')],
+        [t('验证与演进', 'Validate & evolve'), t('以原型和阶段性交付验证假设，结合反馈持续改进。', 'Test assumptions through prototypes and staged delivery, then improve through feedback.')]
+      ].map((s, i) => <div class="step"><span>0{i + 1}</span><div><h3>{s[0]}</h3><p>{s[1]}</p></div></div>)}</div></section>
+      <section id="about" class="section about wrap"><div class="founder-panel"><div class="founder-monogram">RC<span>✳</span></div><div><p class="eyebrow">FOUNDER / ARCHITECT / CONNECTOR</p><h3>Cui, Richard Chikun</h3><p>{t('创始人 · 软件架构师', 'Founder · Software Architect')}</p></div><div class="founder-location"><span class="status-dot"></span> DALIAN, CHINA ↗ GLOBAL</div></div><div class="about-copy"><p class="eyebrow">04 / ABOUT KUNSHINE</p><h2>{t('经验为根，', 'Rooted in experience.')}<br />{t('向智能时代生长。', 'Growing with intelligence.')}</h2><p>{t('大连坤晟科技有限公司成立于 2023 年，是 Cui, Richard Chikun 创立并管理的一人公司（OPC）。以精干的组织方式，连接行业问题与软件架构能力。', 'Founded in 2023, 大连坤晟科技有限公司 (KunShine) is a one-person company (OPC) founded and led by Cui, Richard Chikun, connecting industry challenges with software architecture expertise.')}</p><p>{t('管理者拥有 20 余年软件架构经验，过往项目覆盖能源、工业、制造与教育。随着 AI 辅助研发提升交付效率，公司正将服务重心拓展至企业咨询与商务对接，同时持续深化 AI 架构研究与实践。', 'With over 20 years of software architecture experience across energy, industry, manufacturing and education, the founder is expanding the company’s focus into business consulting and partnerships as AI-assisted development accelerates delivery, while continuing to deepen AI architecture expertise.')}</p><div class="about-values"><span>BUSINESS FIRST</span><span>EXPLAINABLE AI</span><span>CONTINUOUS LEARNING</span></div></div></section>
+      <section id="contact" class="contact"><div class="wrap"><p class="eyebrow"><span class="status-dot"></span> LET’S BUILD WHAT’S NEXT</p><h2>{t('下一个可能，', 'Your next possibility,')}<br />{t('从一次对话开始。', 'starts with a conversation.')}<span>↗</span></h2><div class="contact-bottom"><p>{t('无论是转型方向、AI 架构，还是行业合作，\n从你的业务问题开始，一起寻找可行路径。', 'Transformation, AI architecture or industry partnerships.\nStart with your business challenge. Find a practical path together.')}</p><a class="button primary" href="https://github.com/KunShineTech/KunShineTech.github.io/issues/new" target="_blank" rel="noopener noreferrer">{t('通过 GitHub 发起合作交流', 'Start a conversation on GitHub')} <span>↗</span></a></div><p class="contact-note">{t('GitHub Issue 为公开交流渠道，需登录 GitHub；请勿提交机密或个人敏感信息。', 'GitHub Issues are public and require a GitHub account. Please keep confidential and sensitive personal information private.')}</p></div></section>
+    </main>
+    <footer class="wrap footer"><div><a class="footer-brand" href={en ? '/en/' : '/'}>KunShine<span>✳</span></a><p>大连坤晟科技有限公司</p></div><div class="footer-meta"><span>© {new Date().getFullYear()} KunShine. All rights reserved.</span><a href="#main">{t('返回顶部', 'Back to top')} ↑</a></div></footer>
+  </body>
+</html>
