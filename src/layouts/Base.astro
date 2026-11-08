@@ -1,0 +1,22 @@
+---
+import '../styles/global.css';
+import Nav from '../components/Nav.vue';
+import { site } from '../lib/site';
+interface Props { title: string; description?: string; canonical?: string; type?: 'website'|'article'; published?: string; }
+const {title, description=site.description, canonical, type='website',published}=Astro.props;
+const url=canonical ?? new URL(Astro.url.pathname, site.url).toString();
+const fullTitle=title==='首页'?`${site.name}｜工业智能化与工程软件`: `${title}｜${site.name}`;
+const graph={ '@context':'https://schema.org','@graph':[
+ {'@type':'Organization','@id':site.url+'/#organization',name:site.legalName,alternateName:[site.name,site.english],url:site.url,description:site.description,founder:{'@type':'Person',name:site.founder,alternateName:site.founderEnglish,url:site.url+'/founder/'}},
+ {'@type':'WebSite','@id':site.url+'/#website',name:site.name,url:site.url,inLanguage:'zh-CN',publisher:{'@id':site.url+'/#organization'}},
+ {'@type':type==='article'?'BlogPosting':'WebPage',headline:fullTitle,description,url,inLanguage:'zh-CN',...(type==='article'?{datePublished:published,author:{'@type':'Organization','@id':site.url+'/#organization'}}:{})}
+]};
+---
+<!doctype html><html lang="zh-CN"><head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><meta name="theme-color" content="#0B2227"/>
+<title>{fullTitle}</title><meta name="description" content={description}/><link rel="canonical" href={url}/><link rel="icon" href="/favicon.svg" type="image/svg+xml"/>
+<meta property="og:type" content={type}/><meta property="og:locale" content="zh_CN"/><meta property="og:site_name" content={site.name}/><meta property="og:title" content={fullTitle}/><meta property="og:description" content={description}/><meta property="og:url" content={url}/>
+<meta name="twitter:card" content="summary"/><meta name="twitter:title" content={fullTitle}/><meta name="twitter:description" content={description}/>
+<script type="application/ld+json" set:html={JSON.stringify(graph)} />
+</head><body class="min-h-screen flex flex-col"><a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:z-[100] focus:bg-white focus:p-3">跳转至正文</a><Nav client:load/><main id="main" class="flex-1"><slot/></main>
+<footer class="bg-ink text-white/70 pt-16 pb-8"><div class="wrap"><div class="grid md:grid-cols-3 gap-10 pb-12 border-b border-white/15"><div><p class="text-2xl font-bold text-white">坤晟科技<span class="text-gold">.</span></p><p class="text-xs tracking-widest mt-2">KUNSHINETECH</p><p class="mt-5 text-sm leading-7">以行业知识为根，以智能工程为翼。<br/>让复杂工业系统更可知、更可靠。</p></div><div><p class="text-white font-bold mb-4">探索</p><div class="grid grid-cols-2 gap-3 text-sm"><a href="/solutions/">解决方案</a><a href="/about/">公司介绍</a><a href="/founder/">创始人</a><a href="/blog/">技术博客</a><a href="/contact/">商务合作</a></div></div><div><p class="text-white font-bold mb-4">企业信息</p><p class="text-sm leading-8">大连坤晟科技有限公司<br/>Dalian KunShine Technology Co., Ltd.（英文译名）<br/>官网：kunshine.tech</p></div></div><div class="flex flex-col md:flex-row justify-between gap-3 pt-7 text-xs"><span>© {new Date().getFullYear()} 大连坤晟科技有限公司。保留所有权利。</span><span>中国 · 大连 ｜ 工业智能化 · 工程软件 · AI架构</span></div></div></footer></body></html>

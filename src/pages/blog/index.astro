@@ -1,0 +1,6 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+const posts=(await getCollection('blog',({data})=>!data.draft)).sort((a,b)=>b.data.pubDate.valueOf()-a.data.pubDate.valueOf());
+---
+<Base title="技术博客" description="坤晟科技技术博客：工业智能化、石油钻井软件、数字孪生、AI架构、工程实践与行业洞察。"><section class="bg-ink text-white py-24"><div class="wrap"><p class="text-gold text-xs tracking-[.3em]">INSIGHTS & JOURNAL</p><h1 class="display mt-6">技术思考<span class="text-mint">与工程实践</span></h1><p class="mt-7 text-white/65">从行业问题出发，记录架构判断与技术落地。</p></div></section><section class="section"><div class="wrap"><div class="grid md:grid-cols-2 gap-6">{posts.map(post=><article class="card"><p class="eyebrow">{post.data.pubDate.toLocaleDateString('zh-CN',{timeZone:'UTC'})} · {post.data.tags.join(' / ')}</p><h2 class="text-2xl font-bold mt-6"><a href={`/blog/${post.id}/`} class="hover:text-jade">{post.data.title}</a></h2><p class="text-ink/60 mt-4 leading-8">{post.data.description}</p><a class="inline-block mt-8 text-jade font-semibold" href={`/blog/${post.id}/`}>阅读文章 ↗</a></article>)}</div></div></section></Base>

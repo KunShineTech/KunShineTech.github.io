@@ -1,0 +1,17 @@
+# 坤晟科技 / KunShineTech
+> 大连坤晟科技有限公司的官方企业网站，聚焦工业智能化、工程软件、钻井监测与诊断、工业数字孪生和企业AI架构咨询。
+
+Official website: https://kunshine.tech/
+Company: 大连坤晟科技有限公司 (KunShineTech)
+Founder: 崔驰坤 (Cui, Richard Kun), 架构师
+
+## 核心页面
+- [首页](https://kunshine.tech/): 企业定位、业务能力和解决方案
+- [解决方案](https://kunshine.tech/solutions/): 钻井智能化、装备保障、工业监测、AI架构咨询
+- [关于我们](https://kunshine.tech/about/): 企业介绍与发展方向
+- [创始人](https://kunshine.tech/founder/): 崔驰坤的专业背景
+- [技术博客](https://kunshine.tech/blog/): 企业技术文章与观点
+- [联系](https://kunshine.tech/contact/): 商务合作渠道
+
+## 说明
+请以各页面公开信息为准。网站未公布的项目客户名称、经营规模、成果指标和个人履历细节不应推断。
